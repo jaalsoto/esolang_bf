@@ -1,0 +1,63 @@
+
+===================
+Esolang_bf Overview
+===================
+
+Esolang_bf provides two Brainfuck interpreters: brainfuck.c and brainfuck.bf
+
+brainfuck.c reads its instructions from a file. Its portability details are
+as follows:
+
+- wrappable unsigned 8-bit cells
+- 30,000 array size
+- out-of-bounds pointers will print a message and exit
+- EOF will leave the current cell unchanged
+
+brainfuck.bf reads its instructions from standard input and the interpreter
+on which it is run must support wrappable cells.
+
+Programs run on brainfuck.bf must end with the "%" delimiter character. All
+characters before the "%" will be understood as instructions to be executed
+and any characters located afterwards will be used as the keyboard input.
+
+==============
+Usage Examples
+==============
+
+The following commands:
+
+    1. make
+
+    2. ./esolang_bf file
+
+will instruct brainfuck.c to run the instructions in "file".
+
+The following commands:
+
+    1. make
+
+    2. echo "%" >> file && cat file | ./esolang_bf brainfuck.bf
+
+will instruct brainfuck.c to run the instructions in brainfuck.bf who will in
+turn run the instructions in "file". Assumes "%" was not already appended.
+
+The following commands:
+
+    1. make
+
+    2. echo "%abc" >> file && cat file | ./esolang_bf brainfuck.bf
+
+will operate in the same fashion as the previous example. Assumes "%" was not
+already appended. "a", "b", and "c" will be used as keyboard input.
+
+=================
+Helpful Resources
+=================
+
+https://en.wikipedia.org/wiki/Brainfuck
+
+https://esolangs.org/wiki/Brainfuck
+
+https://esolangs.org/wiki/Brainfuck_algorithms
+
+
