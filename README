@@ -3,52 +3,23 @@
 Esolang_bf Overview
 ===================
 
-Esolang_bf provides two Brainfuck interpreters: brainfuck.c and brainfuck.bf
+A brainfuck interpreter written in Brainfuck.
 
-brainfuck.c reads its instructions from a file. Its portability details are
-as follows:
-
-- wrappable unsigned 8-bit cells
-- 30,000 array size
-- out-of-bounds pointers will print a message and exit
-- EOF will leave the current cell unchanged
-
-brainfuck.bf reads its instructions from standard input and the interpreter
-on which it is run must support wrappable cells.
-
-Programs run on brainfuck.bf must end with the "%" delimiter character. All
-characters before the "%" will be understood as instructions to be executed
-and any characters located afterwards will be used as the keyboard input.
+Program instructions must be followed by the '%' character. All subsequent
+characters will be interpreted as keyboard input.
 
 ==============
 Usage Examples
 ==============
 
-The following commands:
+The following will print the string "HELLO":
 
-    1. make
+    echo "+++++[>++[>+++++++>++++++++<<-]<-]>>++.---.>----..+++.<[>-<-]>.%" \
+    | ./esolang_bf brainfuck.bf
 
-    2. ./esolang_bf file
+The following will print the string "HELLO" (no newline) using input:
 
-will instruct brainfuck.c to run the instructions in "file".
-
-The following commands:
-
-    1. make
-
-    2. echo "%" >> file && cat file | ./esolang_bf brainfuck.bf
-
-will instruct brainfuck.c to run the instructions in brainfuck.bf who will in
-turn run the instructions in "file". Assumes "%" was not already appended.
-
-The following commands:
-
-    1. make
-
-    2. echo "%abc" >> file && cat file | ./esolang_bf brainfuck.bf
-
-will operate in the same fashion as the previous example. Assumes "%" was not
-already appended. "a", "b", and "c" will be used as keyboard input.
+    echo ",.,.,.,.,.%HELLO" | ./esolang_bf brainfuck.bf
 
 =================
 Helpful Resources
