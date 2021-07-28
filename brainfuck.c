@@ -9,14 +9,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define ADDR_MAX 30000
+#define ADDR_MAX 4096
 
 int
 main (int argc, char *argv[])
 {
     FILE *in, *out;
     unsigned char *code, cells[ADDR_MAX];
-    int ret, depth, idx, pc, max, rem;
+    int ret, depth, idx, pc, max;
     size_t len;
     char input;
 
@@ -166,7 +166,9 @@ main (int argc, char *argv[])
         case ',':
             input = fgetc (stdin);
             fflush (stdin);
-            if (input != EOF)
+            if (input == EOF)
+                cells[idx] = 0;
+            else
                 cells[idx] = input;
             break;
         case '+':
@@ -181,9 +183,6 @@ main (int argc, char *argv[])
     /*
      *  Print the values of the memory cells used.
      */
-    
-    rem = max % 16;
-    max += (16 - rem);
 
     ret = fwrite (cells, 1, max, out);
     if (ret != max) {
